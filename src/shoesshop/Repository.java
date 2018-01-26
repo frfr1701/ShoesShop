@@ -3,7 +3,7 @@ package shoesshop;
 
 import java.util.*;
 
-public class Respiratory {
+public class Repository {
     Map<Integer, Customer> customers;
-    Map<Integer, Shoes> shoes;
+    Map<Integer, Shoe> shoes;
 }

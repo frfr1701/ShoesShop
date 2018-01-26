@@ -7,8 +7,8 @@ public class Order {
     private final int id;
     private final Customer customer;
     private final Date date;
-    private Map<Integer, Product> productsInOrder;
-    private boolean expedited;
+    private final boolean expedited;
+    private Map<Integer, Product> productAssignment;
 
     public Order(int id, Customer customer, Date date, boolean expedited) {
         this.id = id;
@@ -22,19 +22,19 @@ public class Order {
     }
 
     public Map<Integer, Product> getProductsInOrder() {
-        return productsInOrder;
+        return productAssignment;
     }
 
     public void setProductsInOrder(Map<Integer, Product> productsInOrder) {
-        this.productsInOrder = productsInOrder;
+        this.productAssignment = productsInOrder;
     }
 
     public void removeProductInOrder(Product product) {
-        productsInOrder.remove(product.getId());
+        productAssignment.remove(product.getId());
     }
 
     public void addProductInOrder(Product product) {
-        productsInOrder.put(product.getId(), product);
+        productAssignment.put(product.getId(), product);
     }
 
     public Customer getCustomer() {
@@ -47,9 +47,5 @@ public class Order {
 
     public boolean isExpedited() {
         return expedited;
-    }
-
-    public void setExpedited(boolean expedited) {
-        this.expedited = expedited;
     }
 }

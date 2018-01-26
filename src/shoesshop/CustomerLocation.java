@@ -1,37 +1,32 @@
-
 package shoesshop;
 
 public class CustomerLocation {
-    private String Address, City, Postcode;
 
-    public String getAddress() {
-        return Address;
+    private final int id;
+    private final String address;
+    private final City city;
+    private final Postcode postcode;
+
+    public CustomerLocation(int id, String address, City city, Postcode postcode) {
+        this.id = id;
+        this.address = address;
+        this.city = city;
+        this.postcode = postcode;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
-
-    public String getCity() {
-        return City;
-    }
-
-    public void setCity(String City) {
-        this.City = City;
-    }
-
-    public String getPostcode() {
-        return Postcode;
-    }
-
-    public CustomerLocation(String Address, String City, String Postcode) {
-        this.Address = Address;
-        this.City = City;
-        this.Postcode = Postcode;
-    }
-
-    public void setPostcode(String Postcode) {
-        this.Postcode = Postcode;
+    public int getId() {
+        return id;
     }
     
+    public String getAddress() {
+        return address;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Postcode getPostcode() {
+        return postcode;
+    }
 }
