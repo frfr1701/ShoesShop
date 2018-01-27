@@ -9,16 +9,16 @@ public class Repository {
     public Map<Integer, Customer> customers;
     Map<Integer, Shoe> shoes;
 
-    public void laddaInKunder() {
+    public void loadCustomers() {
         customers = new HashMap<>();
         
         PropertiesReader pr = new PropertiesReader();
         pr.loadProperties();
 
         try (Connection con = DriverManager.getConnection(pr.getConnectionString(), pr.getUsername(), pr.getPassword());
-                com.mysql.jdbc.Statement stmt = (com.mysql.jdbc.Statement) con.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY)) {
+                Statement stmt = (Statement) con.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY)) {
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM shoeshop.customer");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
             
             while (rs.next()) {
                 customers.put(rs.getInt("id"), new Customer(rs.getInt("id"), rs.getString("name"), rs.getString("personal"), "ab", "ab"));

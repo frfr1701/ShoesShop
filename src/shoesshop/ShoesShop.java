@@ -9,7 +9,7 @@ public class ShoesShop {
 
     private void go() {
         Repository rp = new Repository();
-        rp.laddaInKunder();
+        rp.loadCustomers();
         
         rp.getCustomers().forEach((k,Customer) -> System.out.println(Customer.getName()));
         
