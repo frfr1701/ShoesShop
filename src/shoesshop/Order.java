@@ -5,14 +5,13 @@ import java.util.*;
 public class Order {
 
     private final int id;
-    private final Customer customer;
     private final Date date;
-    private final boolean expedited;
+    private Customer customer;
+    private boolean expedited;
     private Map<Integer, Product> productAssignment;
 
-    public Order(int id, Customer customer, Date date, boolean expedited) {
+    public Order(int id, Date date, boolean expedited) {
         this.id = id;
-        this.customer = customer;
         this.date = date;
         this.expedited = expedited;
     }
@@ -37,8 +36,16 @@ public class Order {
         productAssignment.put(product.getId(), product);
     }
 
+    public Map<Integer, Product> getProductAssignment() {
+        return productAssignment;
+    }
+
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Date getDate() {
@@ -47,5 +54,9 @@ public class Order {
 
     public boolean isExpedited() {
         return expedited;
+    }
+
+    public void setExpedited(boolean expedited) {
+        this.expedited = expedited;
     }
 }

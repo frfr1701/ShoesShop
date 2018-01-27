@@ -3,15 +3,12 @@ package shoesshop;
 public class Product {
 
     private final int id;
-    private final Shoe shoe;
-    private final Size size;
-    private final Color color;
+    private Shoe shoe;
+    private Size size;
+    private Color color;
 
-    public Product(int id, Shoe shoe, Size size, Color color) {
+    public Product(int id) {
         this.id = id;
-        this.shoe = shoe;
-        this.size = size;
-        this.color = color;
     }
 
     public int getId() {
@@ -22,11 +19,24 @@ public class Product {
         return shoe;
     }
 
+    public void setShoe(Shoe shoe) {
+        this.shoe = shoe;
+    }
+
     public Size getSize() {
         return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 
     public Color getColor() {
         return color;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
 }

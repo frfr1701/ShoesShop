@@ -1,19 +1,15 @@
 package shoesshop;
 
 public class Review {
-    
-    private final int id;
-    private final Shoe shoe;
-    private final Rating rating;
-    private final Customer customer;
-    private final String text;
 
-    public Review(int id, Shoe shoe, Rating rating, Customer customer, String text) {
+    private final int id;
+    private Shoe shoe;
+    private Rating rating;
+    private Customer customer;
+    private String text;
+
+    public Review(int id) {
         this.id = id;
-        this.shoe = shoe;
-        this.rating = rating;
-        this.customer = customer;
-        this.text = text;
     }
 
     public int getId() {
@@ -24,15 +20,32 @@ public class Review {
         return shoe;
     }
 
+    public void setShoe(Shoe shoe) {
+        this.shoe = shoe;
+    }
+
     public Rating getRating() {
         return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public String getText() {
         return text;
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
 }

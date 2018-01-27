@@ -4,7 +4,7 @@ public class Stock {
 
     private final int id;
     private final Product product;
-    private final int quantity;
+    private int quantity;
 
     public Stock(int id, Product product, int quantity) {
         this.id = id;
@@ -22,5 +22,9 @@ public class Stock {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

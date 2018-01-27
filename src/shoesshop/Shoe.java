@@ -5,15 +5,14 @@ import java.util.*;
 public class Shoe {
 
     private final int id;
-    private final String name;
-    private final Brand brand;
-    private final float price;
-    private final Map<Integer, Category> categoryAssignment;
+    private Brand brand;
+    private String name;
+    private float price;
+    private Map<Integer, Category> categoryAssignment;
 
-    public Shoe(int id, Brand brand, String name, float price) {
+    public Shoe(int id, String name, float price) {
         this.categoryAssignment = new HashMap<>();
         this.id = id;
-        this.brand = brand;
         this.name = name;
         this.price = price;
     }
@@ -26,6 +25,10 @@ public class Shoe {
         return categoryAssignment;
     }
 
+    public void setCategoryAssignment(Map<Integer, Category> categoryAssignment) {
+        this.categoryAssignment = categoryAssignment;
+    }
+    
     public void addCategory(Category category) {
         categoryAssignment.put(category.getId(), category);
     }
@@ -38,11 +41,23 @@ public class Shoe {
         return brand;
     }
 
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public float getPrice() {
         return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
