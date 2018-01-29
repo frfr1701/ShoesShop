@@ -1,4 +1,4 @@
-package shoesshop;
+package shoesshop.model.DatabaseModels;
 
 import java.util.*;
 

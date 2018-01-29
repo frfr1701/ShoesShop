@@ -1,4 +1,4 @@
-package shoesshop;
+package shoesshop.model.DatabaseModels;
 
 public class Customer {
 

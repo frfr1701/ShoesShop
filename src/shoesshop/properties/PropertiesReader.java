@@ -1,4 +1,4 @@
-package shoesshop;
+package shoesshop.properties;
 
 import java.io.*;
 import java.nio.file.*;
@@ -12,7 +12,7 @@ public class PropertiesReader {
     private String username;
     private String password;
 
-    PropertiesReader() {
+    public PropertiesReader() {
         this.path = Paths.get("settings.properties");
         this.p = new Properties();
     }

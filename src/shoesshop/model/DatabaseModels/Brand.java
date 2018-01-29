@@ -1,11 +1,11 @@
-package shoesshop;
+package shoesshop.model.DatabaseModels;
 
-public class City {
+public class Brand {
 
     private final int id;
     private final String name;
 
-    public City(int id, String name) {
+    public Brand(int id, String name) {
         this.id = id;
         this.name = name;
     }

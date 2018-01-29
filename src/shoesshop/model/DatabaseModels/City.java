@@ -1,12 +1,12 @@
-package shoesshop;
+package shoesshop.model.DatabaseModels;
 
-public class Category {
-    
+public class City {
+
     private final int id;
     private final String name;
 
-    public Category(int Id, String name) {
-        this.id = Id;
+    public City(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 

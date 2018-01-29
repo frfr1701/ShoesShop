@@ -1,12 +1,12 @@
-package shoesshop;
+package shoesshop.model.DatabaseModels;
 
-public class Brand {
-
+public class Category {
+    
     private final int id;
     private final String name;
 
-    public Brand(int id, String name) {
-        this.id = id;
+    public Category(int Id, String name) {
+        this.id = Id;
         this.name = name;
     }
 
