@@ -9,6 +9,7 @@ import java.util.*;
 public class Repository {
 
     PropertiesReader pr;
+    int rowChanged;
     String query;
     ResultSet rs;
 
@@ -19,6 +20,7 @@ public class Repository {
 
     public Map<Integer, Customer> getCustomerMap(String input) {
         Map<Integer, Customer> customers = new HashMap<>();
+        
         if (input.length() > 0) {
             query = "SELECT * FROM customer WHERE name = ?";
         } else {
