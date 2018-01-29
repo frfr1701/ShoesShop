@@ -1,7 +1,5 @@
 package shoesshop.model.DatabaseModels;
 
-import shoesshop.model.DatabaseModels.Product;
-
 public class Stock {
 
     private final int id;

@@ -1,7 +1,5 @@
 package shoesshop.model.DatabaseModels;
 
-import shoesshop.model.DatabaseModels.Brand;
-import shoesshop.model.DatabaseModels.Category;
 import java.util.*;
 
 public class Shoe {

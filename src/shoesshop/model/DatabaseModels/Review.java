@@ -1,9 +1,5 @@
 package shoesshop.model.DatabaseModels;
 
-import shoesshop.model.DatabaseModels.Shoe;
-import shoesshop.model.DatabaseModels.Rating;
-import shoesshop.model.DatabaseModels.Customer;
-
 public class Review {
 
     private final int id;
