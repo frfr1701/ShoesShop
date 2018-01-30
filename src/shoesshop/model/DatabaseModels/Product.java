@@ -1,42 +1,40 @@
 package shoesshop.model.DatabaseModels;
 
+import java.util.*;
+
 public class Product {
 
     private final int id;
-    private Shoe shoe;
-    private Size size;
-    private Color color;
+    private Stock stock;
+    private final Map<Integer, OutOfStock> outOfStockMap;
+    
 
     public Product(int id) {
+        this.outOfStockMap = new HashMap<>();
         this.id = id;
     }
-
+    
     public int getId() {
         return id;
     }
 
-    public Shoe getShoe() {
-        return shoe;
+    public Map<Integer, OutOfStock> getOutOfStockMap() {
+        return outOfStockMap;
+    }
+    
+    public void addOutOfStock(OutOfStock outOfStock) {
+        outOfStockMap.put(outOfStock.getId(), outOfStock);
     }
 
-    public void setShoe(Shoe shoe) {
-        this.shoe = shoe;
+    public void removeOutOfStock(OutOfStock outOfStock) {
+        outOfStockMap.remove(outOfStock.getId());
     }
 
-    public Size getSize() {
-        return size;
+    public Stock getStock() {
+        return stock;
     }
 
-    public void setSize(Size size) {
-        this.size = size;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
 }

@@ -13,19 +13,15 @@ public class View {
     }
 
     public void display(SuperModel model) {
-        model.getCustomers().forEach((k, Customer) -> System.out.println(Customer.getName()));
-
+        model.getViewList().forEach((string) -> {
+            System.out.println(string);
+        });
         run();
     }
 
     public void run() {
         Scanner sc = new Scanner(System.in);
         String line = sc.nextLine();
-
         display(controller.updateModel(line));
-    }
-
-    public void start() {
-        display(controller.updateModel(""));
     }
 }

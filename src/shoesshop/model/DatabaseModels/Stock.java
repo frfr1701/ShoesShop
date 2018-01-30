@@ -3,21 +3,15 @@ package shoesshop.model.DatabaseModels;
 public class Stock {
 
     private final int id;
-    private final Product product;
     private int quantity;
 
-    public Stock(int id, Product product, int quantity) {
+    public Stock(int id, int quantity) {
         this.id = id;
-        this.product = product;
         this.quantity = quantity;
     }
 
     public int getId() {
         return id;
-    }
-
-    public Product getProduct() {
-        return product;
     }
 
     public int getQuantity() {

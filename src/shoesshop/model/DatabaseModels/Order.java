@@ -5,47 +5,31 @@ import java.util.*;
 public class Order {
 
     private final int id;
-    private final Date date;
-    private Customer customer;
+    private final java.sql.Date date;
+    private final List<Product> productList;
     private boolean expedited;
-    private Map<Integer, Product> productAssignment;
 
-    public Order(int id, Date date, boolean expedited) {
-        this.id = id;
-        this.date = date;
+    public Order(int id, java.sql.Date date, boolean expedited) {
+        this.productList = new ArrayList<>();
         this.expedited = expedited;
+        this.date = date;
+        this.id = id;
     }
 
     public int getId() {
         return id;
     }
 
-    public Map<Integer, Product> getProductsInOrder() {
-        return productAssignment;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProductsInOrder(Map<Integer, Product> productsInOrder) {
-        this.productAssignment = productsInOrder;
+    public void removeProductList(Product product) {
+        productList.remove(product);
     }
 
-    public void removeProductInOrder(Product product) {
-        productAssignment.remove(product.getId());
-    }
-
-    public void addProductInOrder(Product product) {
-        productAssignment.put(product.getId(), product);
-    }
-
-    public Map<Integer, Product> getProductAssignment() {
-        return productAssignment;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void addProductList(Product product) {
+        productList.add(product);
     }
 
     public Date getDate() {

@@ -1,12 +1,18 @@
 package shoesshop.model.DatabaseModels;
 
-public class Customer {
+import java.util.*;
+
+public class Customer{
 
     private final int id;
+    private final Map<Integer, Order> orderMap;
+    private final Map<Integer, Review> reviewMap;
     private CustomerLocation customerLocation;
     private String name, personal, username, password;
-
+    
     public Customer(int id, String name, String personal, String username, String password) {
+        this.orderMap = new HashMap<>();
+        this.reviewMap = new HashMap<>();
         this.id = id;
         this.name = name;
         this.personal = personal;
@@ -17,7 +23,30 @@ public class Customer {
     public int getId() {
         return id;
     }
+    public Map<Integer, Order> getOrders() {
+        return orderMap;
+    }
 
+    public void addOrder(Order order) {
+        orderMap.put(order.getId(), order);
+    }
+
+    public void removeOrder(Order order) {
+        orderMap.remove(order.getId());
+    }
+
+    public Map<Integer, Review> getReviewsMap() {
+        return reviewMap;
+    }
+    
+    public void addReview(Review review) {
+        reviewMap.put(review.getId(), review);
+    }
+
+    public void removeReview(Review review) {
+        reviewMap.remove(review.getId());
+    }
+    
     public String getName() {
         return name;
     }

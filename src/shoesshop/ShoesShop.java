@@ -17,6 +17,6 @@ public class ShoesShop {
         SuperModel model = new SuperModel(repository);
         Controller controller = new Controller(model);
         View view = new View(controller);
-        view.start();
+        view.display(controller.updateModel(""));
     }
 }
