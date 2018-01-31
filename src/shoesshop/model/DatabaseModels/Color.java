@@ -14,6 +14,10 @@ public class Color {
         this.name = name;
     }
 
+    public Map<Integer, Product> getProductMap() {
+        return productMap;
+    }
+    
     public void addProduct(Product product) {
         productMap.put(product.getId(), product);
     }

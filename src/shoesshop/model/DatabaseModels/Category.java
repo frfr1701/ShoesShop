@@ -13,6 +13,10 @@ public class Category{
         this.id = Id;
         this.name = name;
     }
+
+    public Map<Integer, Shoe> getShoeMap() {
+        return shoeMap;
+    }
     
     public void addShoe(Shoe shoe) {
         shoeMap.put(shoe.getId(), shoe);

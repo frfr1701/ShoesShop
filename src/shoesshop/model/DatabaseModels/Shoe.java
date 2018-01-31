@@ -7,13 +7,13 @@ public class Shoe {
     private final int id;
     private String name;
     private float price;
-    private final Map<Integer, Category> categoryMap;
     private final Map<Integer, Review> reviewMap;
+    private final Map<Integer, Product> productMap;
     
 
     public Shoe(int id, String name, float price) {
+        this.productMap = new HashMap<>();
         this.reviewMap = new HashMap<>();
-        this.categoryMap = new HashMap<>();
         this.id = id;
         this.name = name;
         this.price = price;
@@ -21,18 +21,6 @@ public class Shoe {
 
     public int getId() {
         return id;
-    }
-
-    public Map<Integer, Category> getCategoryAssignment() {
-        return categoryMap;
-    }
-
-    public void addCategory(Category category) {
-        categoryMap.put(category.getId(), category);
-    }
-
-    public void removeCategory(Category category) {
-        categoryMap.remove(category.getId());
     }
 
     public Map<Integer, Review> getReviewsMap() {
@@ -45,6 +33,17 @@ public class Shoe {
 
     public void removeReview(Review review) {
         reviewMap.remove(review.getId());
+    }
+    public Map<Integer, Product> getProductMap() {
+        return productMap;
+    }
+    
+    public void addProduct(Product product) {
+        productMap.put(product.getId(), product);
+    }
+
+    public void removeProduct(Product product) {
+        productMap.remove(product.getId());
     }
     
     public String getName() {

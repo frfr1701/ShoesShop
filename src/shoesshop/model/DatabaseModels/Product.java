@@ -7,13 +7,12 @@ public class Product {
     private final int id;
     private Stock stock;
     private final Map<Integer, OutOfStock> outOfStockMap;
-    
 
     public Product(int id) {
         this.outOfStockMap = new HashMap<>();
         this.id = id;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -21,7 +20,7 @@ public class Product {
     public Map<Integer, OutOfStock> getOutOfStockMap() {
         return outOfStockMap;
     }
-    
+
     public void addOutOfStock(OutOfStock outOfStock) {
         outOfStockMap.put(outOfStock.getId(), outOfStock);
     }
