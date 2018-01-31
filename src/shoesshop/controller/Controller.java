@@ -21,7 +21,7 @@ public class Controller {
         RepoInterface loadShoes = (m, r) -> r.getShoesMap(m.getShoeMap(), m.getCategoryMap());
         RepoInterface loadProductsForOrdering = (m, r) -> r.mapProductsForOrdering(m.getProductMap(), m.getColorMap(), m.getShoeMap(), m.getBrandMap(), m.getSizeMap());
         RepoInterface loadOrders = (m, r) -> r.mapOrdersToCustomers(m.getCustomerMap(), m.getOrderMap());
-        RepoInterface loadProductsInOrder = (m, r) -> r.mapProductsToOrders(m.getOrderMap(), m.getProductMap(), m.getColorMap(), m.getShoeMap(), m.getBrandMap(), m.getSizeMap(), m.getCategoryMap());
+        RepoInterface loadProductsInOrder = (m, r) -> r.mapProductsToOrders(m.getOrderMap(), m.getProductMap(), m.getColorMap(), m.getShoeMap(), m.getBrandMap(), m.getSizeMap());
 
         model.getOrderMap().forEach((t, u) -> {
             u.getProductList().clear();

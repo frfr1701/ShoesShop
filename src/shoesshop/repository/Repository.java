@@ -190,7 +190,7 @@ public class Repository {
                 errorString = rs.getString("error");
             }
         } catch (SQLException ex) {
-            System.out.println("WHYYY");
+            System.out.println("");
         }
         return errorString;
     }
@@ -218,23 +218,19 @@ public class Repository {
             Map<Integer, Color> colors,
             Map<Integer, Shoe> shoes,
             Map<Integer, Brand> brands,
-            Map<Integer, Size> sizes,
-            Map<Integer, Category> categories) {
+            Map<Integer, Size> sizes) {
 
-        query = "Select Product_ID, Order_ID, product.Shoe_ID, Color_ID,  Brand_ID, Category_ID, Size_ID, "
-                + " color.name as Color, "
-                + " shoe.Name as ShoeName, "
-                + " brand.name as Brand, "
-                + " category.name as Category, "
-                + " size.size as Size, "
-                + " Price from productsinorder "
-                + "inner join product on product.ID= productsinorder.Product_ID "
+        query = "Select Product.ID as Product_ID, Order_ID, product.Shoe_ID, Color_ID,  Brand_ID, Size_ID, "
+                + "color.name as Color, "
+                + "shoe.Name as ShoeName, "
+                + "brand.name as Brand, "
+                + "size.size as Size, "
+                + "Price from product "
+                + "inner join productsinorder on product.ID = productsinorder.Product_ID "
                 + "inner join size on size.id = product.Size_ID "
                 + "inner join color on color.id = product.Color_ID "
                 + "inner join shoe on shoe.ID = product.Shoe_ID "
-                + "inner join brand on brand.id = shoe.Brand_ID "
-                + "inner join categoryAssignment on Shoe.ID = categoryAssignment.shoe_ID "
-                + "inner join category on categoryAssignment.Category_ID = category.ID; ";
+                + "inner join brand on brand.id = shoe.Brand_ID;";
 
         try (Connection con = DriverManager.getConnection(pr.getConnectionString(), pr.getUsername(), pr.getPassword());
                 PreparedStatement stmt = con.prepareStatement(query, TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY)) {
@@ -269,12 +265,6 @@ public class Repository {
                     sizes.get(rs.getInt("Size_ID")).addProduct(products.get(rs.getInt("Product_ID")));
                 } else if (!sizes.get(rs.getInt("Size_ID")).getProductMap().containsKey(rs.getInt("Product_ID"))) {
                     sizes.get(rs.getInt("Size_ID")).addProduct(products.get(rs.getInt("Product_ID")));
-                }
-                if (!categories.containsKey(rs.getInt("Category_ID"))) {
-                    categories.put(rs.getInt("Category_ID"), new Category(rs.getInt("Category_ID"), rs.getString("Category")));
-                    categories.get(rs.getInt("Category_ID")).addShoe(shoes.get(rs.getInt("Shoe_ID")));
-                } else if (!categories.get(rs.getInt("Category_ID")).getShoeMap().containsKey(rs.getInt("Shoe_ID"))) {
-                    categories.get(rs.getInt("Category_ID")).addShoe(shoes.get(rs.getInt("Shoe_ID")));
                 }
             }
         } catch (SQLException ex) {
