@@ -22,8 +22,11 @@ public class Controller {
         RepoInterface loadProductsForOrdering = (m, r) -> r.mapProductsForOrdering(m.getProductMap(), m.getColorMap(), m.getShoeMap(), m.getBrandMap(), m.getSizeMap());
         RepoInterface loadOrders = (m, r) -> r.mapOrdersToCustomers(m.getCustomerMap(), m.getOrderMap());
         RepoInterface loadProductsInOrder = (m, r) -> r.mapProductsToOrders(m.getOrderMap(), m.getProductMap(), m.getColorMap(), m.getShoeMap(), m.getBrandMap(), m.getSizeMap(), m.getCategoryMap());
-        try {
 
+        model.getOrderMap().forEach((t, u) -> {
+            u.getProductList().clear();
+        });
+        try {
             switch (state) {
                 case USERNAME:
                     model.getViewList().clear();
@@ -114,8 +117,11 @@ public class Controller {
                         model.getOrderMap().forEach((key, order) -> {
                             if (model.getTempOrderList().get(Integer.parseInt(input) - 1).equals(order)) {
                                 model.getViewList().add("");
-
+                                
+                                System.out.println(order.getProductList().size());
+                                
                                 order.getProductList().forEach((t) -> {
+                                    
                                     model.getColorMap().values().stream().forEach((x) -> {
                                         if (x.getProductMap().containsKey(t.getId())) {
                                             model.getViewList().add(x.getName());
@@ -230,7 +236,6 @@ public class Controller {
                     break;
                 case CHOOSEORDER:
                     model.getViewList().clear();
-                    model.update(loadOrders);
                     model.getTempOrderList().clear();
                     model.getTempMakeOrderList().add(model.getTempSizeList().get(Integer.parseInt(input) - 1).getId() + "");
 
@@ -257,7 +262,7 @@ public class Controller {
                     model.getViewList().clear();
                     model.update(loadProductId);
 
-                    if (Integer.parseInt(input) < model.getTempOrderList().size()) {
+                    if (Integer.parseInt(input) <= model.getTempOrderList().size()) {
                         model.getAddToCart().add(model.getTempOrderList().get(Integer.parseInt(input) - 1).getId() + "");
                         model.getAddToCart().add(model.getCustomer().getId() + "");
                         model.getAddToCart().add(model.getProductID() + "");
@@ -269,6 +274,8 @@ public class Controller {
                     }
                     model.update(loadMakeOrder);
                     model.getViewList().add(model.getErrorString());
+                    model.getTempMakeOrderList().clear();
+                    model.getTempOrderList().clear();
                     AddMenyOptions();
                     state = OPTION;
                     break;

@@ -123,17 +123,16 @@ public class Repository {
             Map<Integer, Brand> brands,
             Map<Integer, Size> sizes) {
 
-        query = "Select Product_ID, product.Shoe_ID, Color_ID,  Brand_ID, Size_ID, "
-                + " color.name as Color, "
-                + " shoe.Name as ShoeName, "
-                + " brand.name as Brand, "
-                + " size.size as Size,"
-                + " Price from productsinorder "
-                + "inner join product on product.ID= productsinorder.Product_ID "
+        query = "Select Product.ID as Product_ID, product.Shoe_ID, Color_ID,  Brand_ID, Size_ID, "
+                + "color.name as Color, "
+                + "shoe.Name as ShoeName, "
+                + "brand.name as Brand, "
+                + "size.size as Size, "
+                + "Price from product "
                 + "inner join size on size.id = product.Size_ID "
                 + "inner join color on color.id = product.Color_ID "
                 + "inner join shoe on shoe.ID = product.Shoe_ID "
-                + "inner join brand on brand.id = shoe.Brand_ID; ";
+                + "inner join brand on brand.id = shoe.Brand_ID;";
 
         try (Connection con = DriverManager.getConnection(pr.getConnectionString(), pr.getUsername(), pr.getPassword());
                 PreparedStatement stmt = con.prepareStatement(query, TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY)) {
@@ -172,16 +171,16 @@ public class Repository {
             System.out.println(ex.getCause());
         }
     }
-    
+
     public String addToCart(String Order_ID, String Customer_ID, String Product_ID) {
-        
+
         query = "call AddToCart(?,?,?)";
         String errorString = "Allt gick bra!";
         try (Connection con = DriverManager.getConnection(pr.getConnectionString(), pr.getUsername(), pr.getPassword());
                 CallableStatement stmt = con.prepareCall(query)) {
-            if (!Order_ID.equals(-1 +"")) {
+            if (!Order_ID.equals(-1 + "")) {
                 stmt.setString(1, Order_ID);
-            }else{
+            } else {
                 stmt.setString(1, null);
             }
             stmt.setString(2, Customer_ID);
@@ -191,15 +190,14 @@ public class Repository {
                 errorString = rs.getString("error");
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getCause());
-            System.out.println(ex.getErrorCode());
+            System.out.println("WHYYY");
         }
         return errorString;
     }
-    
-    public int getProductID(String ShoeID, String ColorID , String SizeID) {
+
+    public int getProductID(String ShoeID, String ColorID, String SizeID) {
         query = "Select product.id from product where Size_ID = ? and Shoe_ID = ? and Color_ID = ?";
-        
+
         try (Connection con = DriverManager.getConnection(pr.getConnectionString(), pr.getUsername(), pr.getPassword());
                 CallableStatement stmt = con.prepareCall(query)) {
             stmt.setString(1, SizeID);
@@ -214,7 +212,7 @@ public class Repository {
         }
         return 0;
     }
-    
+
     public void mapProductsToOrders(Map<Integer, Order> orders,
             Map<Integer, Product> products,
             Map<Integer, Color> colors,
@@ -245,10 +243,9 @@ public class Repository {
             while (rs.next()) {
                 if (!products.containsKey(rs.getInt("Product_ID"))) {
                     products.put(rs.getInt("Product_ID"), new Product(rs.getInt("Product_ID")));
-                    orders.get(rs.getInt("Order_ID")).addProductList(products.get(rs.getInt("Product_ID")));
-                } else if (!orders.get(rs.getInt("Order_ID")).getProductList().contains(products.get(rs.getInt("Product_ID")))) {
-                    orders.get(rs.getInt("Order_ID")).addProductList(products.get(rs.getInt("Product_ID")));
                 }
+                orders.get(rs.getInt("Order_ID")).addProductList(products.get(rs.getInt("Product_ID")));
+
                 if (!colors.containsKey(rs.getInt("Color_ID"))) {
                     colors.put(rs.getInt("Color_ID"), new Color(rs.getInt("Color_ID"), rs.getString("Color")));
                     colors.get(rs.getInt("Color_ID")).addProduct(products.get(rs.getInt("Product_ID")));
