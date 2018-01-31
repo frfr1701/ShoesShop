@@ -190,7 +190,7 @@ public class Repository {
                 errorString = rs.getString("error");
             }
         } catch (SQLException ex) {
-            System.out.println("");
+            //EEEEEEEEEEEHHHH HEAEEAEAEAEAEA HAEHAEHAEHAEHAE
         }
         return errorString;
     }
