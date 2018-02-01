@@ -117,11 +117,11 @@ public class Controller {
                         model.getOrderMap().forEach((key, order) -> {
                             if (model.getTempOrderList().get(Integer.parseInt(input) - 1).equals(order)) {
                                 model.getViewList().add("");
-                                
+
                                 System.out.println(order.getProductList().size());
-                                
+
                                 order.getProductList().forEach((t) -> {
-                                    
+
                                     model.getColorMap().values().stream().forEach((x) -> {
                                         if (x.getProductMap().containsKey(t.getId())) {
                                             model.getViewList().add(x.getName());
