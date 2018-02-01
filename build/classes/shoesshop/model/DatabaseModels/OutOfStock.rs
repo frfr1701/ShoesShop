@@ -1,0 +1,1 @@
+shoesshop.model.DatabaseModels.OutOfStock
