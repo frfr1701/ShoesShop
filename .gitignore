@@ -2,3 +2,6 @@
 *.xml
 *.mf
 *.properties
+/dist/
+/build/
+/nbproject/private/
